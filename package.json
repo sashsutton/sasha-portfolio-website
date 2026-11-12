@@ -8,15 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.2",
     "next": "16.4.6",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "three": "0.185.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.5",
     "@types/node": "^26",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/three": "0.185.0",
     "tailwindcss": "4.3.5",
     "typescript": "6.0.3"
   }

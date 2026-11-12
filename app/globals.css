@@ -42,7 +42,14 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  /* Clears the sticky header when jumping to a section: taller on phones,
+     where the section links sit on a second row. */
+  scroll-padding-top: 7.5rem;
+}
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 5rem;
+  }
 }
 
 ::selection {
