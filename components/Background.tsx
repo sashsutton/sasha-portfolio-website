@@ -43,7 +43,7 @@ export function Background() {
           label="Background"
           title={
             <>
-              Two disciplines, <em className="italic">one habit.</em>
+              I enjoy math &amp; computer science, <em className="italic">but I also enjoy making music.</em>
             </>
           }
         />
