@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <section id="contact" className="bg-fg pt-24 pb-10 text-bg sm:pt-32">
       <Container>
-        <p className="reveal font-mono text-xs tracking-[0.16em] uppercase opacity-70">04 — Contact</p>
+        <p className="reveal font-mono text-xs tracking-[0.16em] uppercase opacity-70">Contact</p>
 
         <a
           href={`mailto:${site.email}`}
