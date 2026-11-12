@@ -10,10 +10,8 @@ import { Computer } from "./Computer";
  * The hero's 3D computer. Loaded client-side only (see HeroComputer), on a
  * transparent canvas so it sits directly on the cream page.
  *
- * Motion: the machine turns gently toward the pointer, and fast pointer
- * movement adds "energy" that swells the waveform behind the terminal on its
- * screen — the same pluck-a-string feel as the 2D wave below it. The screen's
- * menu is clickable, so the canvas takes pointer events (touch scrolling
+ * Motion: the machine turns gently toward the pointer. The screen's menu is
+ * clickable, so the canvas takes pointer events (touch scrolling
  * still passes through: R3F doesn't set touch-action).
  *
  * Cost control: rendering stops entirely while the hero is off-screen, and
@@ -25,24 +23,18 @@ const BASE_YAW = -0.38;
 
 function Rig({ booted }: { booted: boolean }) {
   const group = useRef<THREE.Group>(null);
-  const pointer = useRef({ x: 0, y: 0, lastX: 0, lastY: 0 });
-  const energy = useRef(0);
+  const pointer = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      const p = pointer.current;
-      energy.current = Math.min(1.2, energy.current + Math.hypot(x - p.lastX, y - p.lastY) * 1.6);
-      p.lastX = p.x = x;
-      p.lastY = p.y = y;
+      pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.current.y = (e.clientY / window.innerHeight) * 2 - 1;
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
 
   useFrame((state, delta) => {
-    energy.current *= Math.exp(-delta * 2.4); // decays over about a second
     const g = group.current;
     if (!g) return;
     const t = state.clock.elapsedTime;
@@ -54,7 +46,7 @@ function Rig({ booted }: { booted: boolean }) {
 
   return (
     <group ref={group}>
-      <Computer booted={booted} energy={energy} />
+      <Computer booted={booted} />
     </group>
   );
 }

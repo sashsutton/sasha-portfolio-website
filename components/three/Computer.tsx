@@ -80,7 +80,7 @@ function useLabelTexture(text: string) {
   return texture;
 }
 
-function Monitor({ booted, energy }: { booted: boolean; energy: { current: number } }) {
+function Monitor({ booted }: { booted: boolean }) {
   const brand = useLabelTexture("SASHA-TRON 1200");
 
   return (
@@ -109,7 +109,7 @@ function Monitor({ booted, energy }: { booted: boolean; energy: { current: numbe
         <meshStandardMaterial color="#0d0c0b" roughness={0.4} metalness={0.1} />
       </RoundedBox>
 
-      <CrtScreen booted={booted} energy={energy} position={[0, SCREEN_Y, Z.phosphor]} />
+      <CrtScreen booted={booted} position={[0, SCREEN_Y, Z.phosphor]} />
 
       {/* Curved glass: a patch of a big sphere, picks up the environment's reflections. */}
       <mesh position={[0, SCREEN_Y, Z.glassApex - GLASS_R]}>
@@ -229,10 +229,10 @@ function Keyboard(props: React.ComponentProps<"group">) {
   );
 }
 
-export function Computer({ booted, energy }: { booted: boolean; energy: { current: number } }) {
+export function Computer({ booted }: { booted: boolean }) {
   return (
     <group>
-      <Monitor booted={booted} energy={energy} />
+      <Monitor booted={booted} />
       <Keyboard position={[0.05, -1.915, 2.05]} rotation={[0, -0.05, 0]} />
     </group>
   );

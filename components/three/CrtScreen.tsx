@@ -15,7 +15,7 @@ import * as THREE from "three";
  *     about
  *     background
  *
- * with the hero's waveform running faintly behind it. The menu items are
+ * on a plain dark phosphor background. The menu items are
  * clickable and scroll to their section (the same links are in the nav, so
  * nothing is only reachable from here).
  *
@@ -202,31 +202,12 @@ const fragmentShader = /* glsl */ `
   varying vec2 vUv;
 
   uniform sampler2D uText;
-  uniform float uTime;
   uniform float uBoot;    // 0 → 1 power-on
-  uniform float uEnergy;  // pointer energy
   uniform vec3  uBg;
-  uniform vec3  uTrace;
+  uniform vec3  uAccent;  // power-on hairline
 
   const float PI = 3.14159265;
-  const vec2 ASPECT = vec2(4.0, 3.0);
   const vec2 TEXEL = vec2(1.0 / 1024.0, 1.0 / 768.0);
-
-  // Same wave as components/Waveform.tsx.
-  float traceY(float u, float t) {
-    float w = sin(u * 13.0 + t * 1.6) * 0.55
-            + sin(u * 29.0 - t * 2.3) * 0.3
-            + sin(u * 71.0 + t * 4.1) * 0.15 * (1.0 + uEnergy * 2.0);
-    return 0.5 + 0.5 * w * (0.34 + uEnergy * 0.45) * sin(PI * u);
-  }
-
-  float trace(vec2 uv, float t) {
-    float e = 0.0015;
-    float y0 = traceY(uv.x, t);
-    float slope = ((traceY(uv.x + e, t) - y0) * ASPECT.y) / (e * ASPECT.x);
-    float d = abs(uv.y - y0) * ASPECT.y / sqrt(1.0 + slope * slope);
-    return exp(-pow(d / 0.02, 2.0)) + 0.25 * exp(-d / 0.14);
-  }
 
   void main() {
     vec2 uv = vUv;
@@ -238,23 +219,23 @@ const fragmentShader = /* glsl */ `
     float mask = 1.0 - smoothstep(halfH, halfH + 0.006, abs(uv.y - 0.5));
     float hairline = (1.0 - smoothstep(0.0, 0.9, uBoot)) * exp(-abs(uv.y - 0.5) * 260.0) * 3.0;
 
-    // Background: dark phosphor with the waveform running faintly behind the text.
-    vec3 col = uBg + uTrace * trace(uv, uTime) * (0.22 + uEnergy * 0.35);
+    // Background: plain dark phosphor.
+    vec3 col = uBg;
 
     // Text, plus a soft halo so it reads as glowing phosphor rather than print.
     vec4 text = texture2D(uText, uv);
     vec3 halo = vec3(0.0);
     for (int i = 0; i < 8; i++) {
       float a = float(i) * PI / 4.0;
-      halo += texture2D(uText, uv + vec2(cos(a), sin(a)) * TEXEL * 5.0).rgb
-            * texture2D(uText, uv + vec2(cos(a), sin(a)) * TEXEL * 5.0).a;
+      vec4 s = texture2D(uText, uv + vec2(cos(a), sin(a)) * TEXEL * 5.0);
+      halo += s.rgb * s.a;
     }
     col = mix(col, text.rgb, text.a) + halo / 8.0 * 0.35;
 
     // Tube character: scanlines and vignette.
     col *= mix(1.0, 0.5 + 0.5 * sin(uv.y * 620.0), 0.16);
     col *= 1.0 - dot(c, c) * 0.32;
-    col += uTrace * hairline;
+    col += uAccent * hairline;
 
     gl_FragColor = vec4(col * mask, 1.0);
 
@@ -266,10 +247,9 @@ type Props = {
   width?: number;
   height?: number;
   booted: boolean;
-  energy: { current: number };
 } & Omit<React.ComponentProps<"mesh">, "args">;
 
-export function CrtScreen({ width = 2.56, height = 1.92, booted, energy, ...props }: Props) {
+export function CrtScreen({ width = 2.56, height = 1.92, booted, ...props }: Props) {
   const [hovered, setHovered] = useState<number | null>(null);
   const { texture, itemAt } = useTerminalTexture(booted, hovered);
   const material = useRef<THREE.ShaderMaterial>(null);
@@ -277,23 +257,19 @@ export function CrtScreen({ width = 2.56, height = 1.92, booted, energy, ...prop
   const uniforms = useMemo(
     () => ({
       uText: { value: texture },
-      uTime: { value: 0 },
       uBoot: { value: 0 },
-      uEnergy: { value: 0 },
       uBg: { value: new THREE.Color("#12110f") },
-      uTrace: { value: new THREE.Color("#ff6b3d") },
+      uAccent: { value: new THREE.Color("#ff6b3d") },
     }),
     [texture],
   );
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     // Write through the material's own uniforms: the object passed as a prop
     // is not guaranteed to be the one the material ends up holding.
     const u = material.current?.uniforms;
     if (!u) return;
-    u.uTime.value = state.clock.elapsedTime;
     u.uBoot.value = THREE.MathUtils.damp(u.uBoot.value, booted ? 1 : 0, 2.6, delta);
-    u.uEnergy.value = energy.current;
   });
 
   useEffect(() => {
