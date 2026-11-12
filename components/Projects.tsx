@@ -9,7 +9,7 @@ export function Projects() {
           label="Projects"
           title={
             <>
-              Things I built <em className="italic">to understand them.</em>
+              Some of the things I&apos;ve built <em className="italic">or contributed to.</em>
             </>
           }
         />
