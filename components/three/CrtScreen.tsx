@@ -9,7 +9,7 @@ import * as THREE from "three";
  *
  *   $ whoami
  *   Sasha Sutton
- *   aspiring ML researcher
+ *   AI & machine learning
  *   $ ls
  *   > projects
  *     about
@@ -56,7 +56,7 @@ function script(ms: number, done: boolean): { lines: Line[]; finished: boolean }
 
   lines.push(prompt(type("whoami", 300)));
   if (after(1150)) lines.push({ parts: [{ text: "Sasha Sutton", color: COLORS.text, weight: 600 }] });
-  if (after(1350)) lines.push({ parts: [{ text: "aspiring ML researcher", color: COLORS.muted }] });
+  if (after(1350)) lines.push({ parts: [{ text: "AI & machine learning", color: COLORS.muted }] });
   if (after(1900)) lines.push(prompt(type("ls", 2100)));
   MENU.forEach((item, i) => {
     if (after(2500 + i * 140)) lines.push({ parts: [{ text: item.label, color: COLORS.text }], item: i });
