@@ -6,14 +6,14 @@ export function Container({ children, className = "" }: { children: ReactNode; c
 }
 
 /**
- * Section opener: a heavy rule, a numbered mono label, and a serif headline
- * on a 12-column grid. The numbering is what gives the page its rhythm.
+ * Section opener: a heavy rule, a mono label, and a serif headline
+ * on a 12-column grid.
  */
-export function SectionHeading({ index, label, title }: { index: string; label: string; title: ReactNode }) {
+export function SectionHeading({ label, title }: { label: string; title: ReactNode }) {
   return (
     <div className="reveal mb-12 grid gap-4 border-t border-fg pt-5 sm:mb-16 sm:grid-cols-12">
       <p className="font-mono text-xs tracking-[0.16em] text-muted uppercase sm:col-span-3">
-        {index} — {label}
+        {label}
       </p>
       <h2 className="font-serif text-5xl leading-[0.95] tracking-tight text-balance sm:col-span-9 sm:text-7xl">
         {title}

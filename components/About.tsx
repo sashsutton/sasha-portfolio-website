@@ -8,7 +8,6 @@ export function About() {
     <section id="about" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          index="03"
           label="About"
           title={
             <>

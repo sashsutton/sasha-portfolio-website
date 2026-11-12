@@ -6,7 +6,6 @@ export function Projects() {
     <section id="projects" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          index="02"
           label="Projects"
           title={
             <>

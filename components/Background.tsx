@@ -5,19 +5,16 @@ type Entry = { years: string; place: string; title: string; url?: string };
 
 function Column({
   label,
-  dot,
   entries,
   footer,
 }: {
   label: string;
-  dot: string;
   entries: Entry[];
   footer?: React.ReactNode;
 }) {
   return (
     <div className="reveal">
-      <h3 className="flex items-center gap-3 border-b border-fg pb-4 font-mono text-xs tracking-[0.16em] uppercase">
-        <span className={`size-2.5 rounded-full ${dot}`} />
+      <h3 className="border-b border-fg pb-4 font-mono text-xs tracking-[0.16em] uppercase">
         {label}
       </h3>
       <ul>
@@ -43,7 +40,6 @@ export function Background() {
     <section id="background" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          index="04"
           label="Background"
           title={
             <>
@@ -52,10 +48,9 @@ export function Background() {
           }
         />
         <div className="grid gap-16 md:grid-cols-2 md:gap-12">
-          <Column label="Science & AI" dot="bg-code" entries={science} />
+          <Column label="Science & AI" entries={science} />
           <Column
             label="Music & Sound"
-            dot="bg-accent"
             entries={sound}
             footer={
               <>
