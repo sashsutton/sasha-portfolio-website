@@ -10,8 +10,6 @@ export const site = {
   description:
     "Sasha Sutton — M1 in Data, Knowledge & Hybrid AI at Université Paris-Saclay. NLP and computer vision. Formerly a sound engineer in London.",
   intro: "I'm doing a master's in AI. Before that I spent four years working in sound in London.",
-  now: "M1 Data, Knowledge & Hybrid AI — Université Paris-Saclay",
-  before: "Formerly on the sound team at Fabric London",
   email: "sashasuttons3@gmail.com",
   links: {
     github: "https://github.com/sashsutton",
@@ -32,16 +30,31 @@ export type Project = {
   demo?: string;
 };
 
-export const publication = {
-  // Published in French; the title is a citation, so it stays verbatim.
-  title:
-    "De la propagation avant à la rétropropagation : une analyse des mécanismes d'apprentissage dans les réseaux de neurones multicouches",
-  meta: "S. Sutton · Aix-Marseille Université · HAL, 2026",
-  blurb:
-    "A walk through the mathematics of learning in multilayer networks, from Rosenblatt's perceptron to backpropagation. Written in French; my first published paper.",
-  hal: "https://hal.science/hal-05628568",
-  repo: "https://github.com/sashsutton/MLP-article-en",
+export type Publication = {
+  title: string;
+  venue: string;
+  meta: string;
+  blurb: string;
+  url: string;
+  urlLabel: string;
+  repo?: string;
 };
+
+/** Newest first. Add a paper by adding an entry here. */
+export const publications: Publication[] = [
+  {
+    // Published in French; the title is a citation, so it stays verbatim.
+    title:
+      "De la propagation avant à la rétropropagation : une analyse des mécanismes d'apprentissage dans les réseaux de neurones multicouches",
+    venue: "HAL · 2026",
+    meta: "S. Sutton · Aix-Marseille Université",
+    blurb:
+      "A walk through the mathematics of learning in multilayer networks, from Rosenblatt's perceptron to backpropagation. Written in French; my first published paper.",
+    url: "https://hal.science/hal-05628568",
+    urlLabel: "Read on HAL",
+    repo: "https://github.com/sashsutton/MLP-article-en",
+  },
+];
 
 export const projects: Project[] = [
   {

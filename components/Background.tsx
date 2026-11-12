@@ -43,7 +43,7 @@ export function Background() {
     <section id="background" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          index="03"
+          index="04"
           label="Background"
           title={
             <>

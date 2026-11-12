@@ -1,13 +1,13 @@
-import { projects, publication, site } from "@/lib/content";
+import { projects, site } from "@/lib/content";
 import { ArrowLink, Container, SectionHeading } from "./ui";
 
-export function Work() {
+export function Projects() {
   return (
-    <section id="work" className="py-24 sm:py-32">
+    <section id="projects" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          index="01"
-          label="Selected work"
+          index="02"
+          label="Projects"
           title={
             <>
               Things I built <em className="italic">to understand them.</em>
@@ -15,21 +15,7 @@ export function Work() {
           }
         />
 
-        {/* The paper leads: it's the most substantial piece of work. */}
-        <article className="reveal relative overflow-hidden rounded-3xl bg-surface p-7 sm:p-12">
-          <p className="font-mono text-xs tracking-[0.16em] text-code uppercase">Publication · HAL 2026</p>
-          <h3 className="mt-5 max-w-4xl font-serif text-3xl leading-[1.1] text-pretty sm:text-5xl">
-            {publication.title}
-          </h3>
-          <p className="mt-5 max-w-2xl leading-relaxed text-muted">{publication.blurb}</p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
-            <ArrowLink href={publication.hal}>Read on HAL</ArrowLink>
-            <ArrowLink href={publication.repo}>Source</ArrowLink>
-            <ArrowLink href={site.links.scholar}>Google Scholar</ArrowLink>
-          </div>
-        </article>
-
-        <ol className="mt-6">
+        <ol className="border-t border-line">
           {projects.map((project, i) => (
             <li
               key={project.title}

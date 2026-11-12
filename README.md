@@ -35,7 +35,7 @@ who prefer reduced motion.
 
 ```
 app/          layout, page, global styles, icon, OG image
-components/   Nav, Hero, Waveform, Work, About, Background, Contact, ui
+components/   Nav, Hero, Waveform, Publications, Projects, About, Background, Contact, ui
 lib/          content.ts — every word on the site
 assets/       portrait
 public/cv/    CV PDF
