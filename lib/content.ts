@@ -113,19 +113,19 @@ export const about = {
 
 export const science = [
   {
-    years: "2026 — 27",
+    years: "2026 — 2027",
     place: "Université Paris-Saclay",
     title: "M1 — Data, Knowledge & Hybrid AI",
     url: "https://www.universite-paris-saclay.fr/en/education/masters-degree/computer-science/m1-data-knowledge-and-hybrid-artificial-intelligence-dkai",
   },
   {
-    years: "2026 — 27",
+    years: "2026 — 2027",
     place: "Aix-Marseille Université",
     title: "BSc — Mathematics",
     url: "https://sciences.univ-amu.fr/fr/formation/licences/licence-mathematiques/parcours-mathematiques",
   },
   {
-    years: "2023 — 26",
+    years: "2023 — 2026",
     place: "Aix-Marseille Université",
     title: "BSc — Mathematics & Computer Science",
     url: "https://sciences.univ-amu.fr/fr/formation/licences/licence-informatique/parcours-mathematiques-informatique",
@@ -135,5 +135,5 @@ export const science = [
 export const sound = [
   { years: "2 yrs", place: "Fabric London", title: "Sound-engineering team — live sound, every night" },
   { years: "2 yrs", place: "Point Blank", title: "Sound engineering training, DJing & production" },
-  { years: "2021 — 23", place: "Middlesex University", title: "BA (Hons) Music Production & Sound Engineering" },
+  { years: "2021 — 2023", place: "Middlesex University", title: "BA (Hons) Music Production & Sound Engineering" },
 ];
