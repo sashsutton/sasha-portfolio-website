@@ -46,10 +46,10 @@ export const publications: Publication[] = [
     // Published in French; the title is a citation, so it stays verbatim.
     title:
       "De la propagation avant à la rétropropagation : une analyse des mécanismes d'apprentissage dans les réseaux de neurones multicouches",
-    venue: "HAL · 2026",
+    venue: "Preprint · HAL · 2026",
     meta: "S. Sutton · Aix-Marseille Université",
     blurb:
-      "A walk through the mathematics of learning in multilayer networks, from Rosenblatt's perceptron to backpropagation. Written in French; my first published paper.",
+      "A walk through the mathematics of learning in multilayer networks, from Rosenblatt's perceptron to backpropagation. Written in French; my first research paper.",
     url: "https://hal.science/hal-05628568",
     urlLabel: "Read on HAL",
     repo: "https://github.com/sashsutton/MLP-article-en",
