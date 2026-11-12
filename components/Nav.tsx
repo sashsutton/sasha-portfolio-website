@@ -2,7 +2,7 @@ import { site } from "@/lib/content";
 import { Container } from "./ui";
 
 const LINKS = [
-  { label: "Publications", href: "#publications" },
+  { label: "Papers", href: "#publications" },
   { label: "Projects", href: "#projects" },
   { label: "About", href: "#about" },
   { label: "Background", href: "#background" },

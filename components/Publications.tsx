@@ -6,7 +6,7 @@ export function Publications() {
     <section id="publications" className="py-24 sm:py-32">
       <Container>
         <SectionHeading
-          label="Publications"
+          label="Papers & articles"
           title={
             <>
               Writing it down <em className="italic">properly.</em>
